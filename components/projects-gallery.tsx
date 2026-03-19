@@ -69,7 +69,7 @@ const projects = [
   image: "/7.png",
   technologies: ["Laravel 12", "MySQL", "Tailwind CSS", "DomPDF"],
   client: "SENA — Servicio Nacional de Aprendizaje",
-  githubUrl: "https://github.com/tu-usuario/panaderia-masaMadre",
+  githubUrl: "https://github.com/jaidersenat-source/MasaMadre",
   liveUrl: "",
 },
 
