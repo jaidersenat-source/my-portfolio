@@ -4,7 +4,7 @@ import Image from "next/image"
 import { Code2, Rocket, Heart } from "lucide-react"
 
 const stats = [
-  { icon: Code2, label: "Proyectos Desarrollados", value: "+5" },
+  { icon: Code2, label: "Proyectos Desarrollados", value: "+10" },
   { icon: Rocket, label: "Tecnologías Utilizadas", value: "+8" },
   { icon: Heart, label: "Aprendizaje Constante", value: "100%" },
 ]
