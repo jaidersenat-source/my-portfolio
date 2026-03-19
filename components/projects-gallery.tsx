@@ -63,7 +63,7 @@ const projects = [
 },
   {
   id: 6,
-  title: "SourDough — SENA",
+  title: "SourDough",
   shortDescription: "Sistema web para digitalizar el control de masa madre en panaderías colombianas vinculadas al SENA.",
   fullDescription: "Reemplaza un flujo manual en Excel donde cada panadería registraba pH, temperaturas y tiempos de fermentación día a día y enviaba el archivo al coordinador. Ahora cada panadería tiene su propio panel para registrar el proceso de 5 días y la elaboración del pan. El administrador centraliza todo en tiempo real, filtra por regional y exporta reportes en Excel y PDF con un clic.",
   image: "/7.png",
