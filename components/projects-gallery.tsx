@@ -62,18 +62,18 @@ const projects = [
   liveUrl: "https://alejo.ingejorgehenao.com/login",
 },
   {
-    id: 6,
-    title: "Weather Dashboard",
-    shortDescription: "Dashboard meteorológico con datos en tiempo real.",
-    fullDescription: "Aplicación del clima con pronósticos detallados, mapas interactivos, y alertas meteorológicas personalizadas.",
-    image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?w=600&h=400&fit=crop",
-    technologies: ["React", "OpenWeather API", "Mapbox", "D3.js"],
-    client: "Proyecto Open Source",
-    githubUrl: "https://github.com",
-    liveUrl: "https://example.com",
-  },
-]
+  id: 6,
+  title: "SourDough — SENA",
+  shortDescription: "Sistema web para digitalizar el control de masa madre en panaderías colombianas vinculadas al SENA.",
+  fullDescription: "Reemplaza un flujo manual en Excel donde cada panadería registraba pH, temperaturas y tiempos de fermentación día a día y enviaba el archivo al coordinador. Ahora cada panadería tiene su propio panel para registrar el proceso de 5 días y la elaboración del pan. El administrador centraliza todo en tiempo real, filtra por regional y exporta reportes en Excel y PDF con un clic.",
+  image: "/7.png",
+  technologies: ["Laravel 12", "MySQL", "Tailwind CSS", "DomPDF"],
+  client: "SENA — Servicio Nacional de Aprendizaje",
+  githubUrl: "https://github.com/tu-usuario/panaderia-masaMadre",
+  liveUrl: "",
+},
 
+];
 export function ProjectsGallery() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null)
 
