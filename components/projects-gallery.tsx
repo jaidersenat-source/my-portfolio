@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { X, ExternalLink } from "lucide-react"
@@ -77,6 +77,18 @@ const projects = [
 export function ProjectsGallery() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null)
 
+  // Bloquear scroll del body cuando el modal está abierto
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [selectedProject])
+
   return (
     <section id="proyectos" className="py-24 bg-background">
       <div className="container mx-auto px-6">
@@ -133,16 +145,29 @@ export function ProjectsGallery() {
           ))}
         </div>
 
-        {/* Modal */}
+        {/* Modal - CORREGIDO PARA MÓVIL */}
         {selectedProject && (
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-background/80 backdrop-blur-sm"
             onClick={() => setSelectedProject(null)}
           >
             <div
-              className="relative w-full max-w-2xl bg-card border border-border rounded-2xl overflow-hidden shadow-2xl"
+              className="
+                relative w-full sm:max-w-2xl
+                bg-card border border-border
+                rounded-t-2xl sm:rounded-2xl
+                overflow-y-auto
+                max-h-[90dvh] sm:max-h-[85vh]
+                shadow-2xl
+              "
               onClick={(e) => e.stopPropagation()}
             >
+              {/* Pill handle visible solo en móvil */}
+              <div className="flex justify-center pt-3 sm:hidden">
+                <div className="w-10 h-1 rounded-full bg-border" />
+              </div>
+
+              {/* Botón cerrar */}
               <button
                 onClick={() => setSelectedProject(null)}
                 className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-secondary transition-colors"
@@ -150,7 +175,8 @@ export function ProjectsGallery() {
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="relative aspect-video">
+              {/* Imagen — más compacta en móvil */}
+              <div className="relative w-full aspect-video sm:aspect-video mt-2 sm:mt-0">
                 <Image
                   src={selectedProject.image}
                   alt={selectedProject.title}
@@ -159,11 +185,12 @@ export function ProjectsGallery() {
                 />
               </div>
 
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-foreground mb-4">
+              {/* Contenido */}
+              <div className="p-6 sm:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-3">
                   {selectedProject.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed mb-6">
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-5">
                   {selectedProject.fullDescription}
                 </p>
 
@@ -172,7 +199,7 @@ export function ProjectsGallery() {
                   <span className="text-sm text-foreground">{selectedProject.client}</span>
                 </div>
 
-                <div className="flex flex-wrap gap-2 mb-8">
+                <div className="flex flex-wrap gap-2 mb-6">
                   {selectedProject.technologies.map((tech) => (
                     <span
                       key={tech}
@@ -183,10 +210,11 @@ export function ProjectsGallery() {
                   ))}
                 </div>
 
-                <div className="flex gap-4">
+                {/* Botones — full width en móvil */}
+                <div className="flex flex-col sm:flex-row gap-3">
                   <Button
                     variant="outline"
-                    className="border-border hover:bg-secondary"
+                    className="w-full sm:w-auto border-border hover:bg-secondary"
                     asChild
                   >
                     <a href={selectedProject.githubUrl} target="_blank" rel="noopener noreferrer">
@@ -194,8 +222,11 @@ export function ProjectsGallery() {
                       Ver Código
                     </a>
                   </Button>
-                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90" asChild>
-                    <a href={selectedProject.liveUrl} target="_blank">
+                  <Button
+                    className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90"
+                    asChild
+                  >
+                    <a href={selectedProject.liveUrl} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="mr-2 w-4 h-4" />
                       Sitio Web
                     </a>
